@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Getter
 @Setter
@@ -15,11 +16,8 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "content_type")
-    private String contentType;
-
-    @Column(name = "filename")
-    private String filename;
+    @Column(name = "image")
+    private byte[] image;
 
     @ManyToOne
     private Good good;

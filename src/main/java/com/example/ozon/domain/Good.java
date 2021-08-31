@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Set;
 
 @Getter
@@ -40,5 +41,6 @@ public class Good {
 
     @OneToMany(mappedBy = "good", cascade = CascadeType.REMOVE)
     private Set<Image> foto;
+
 
 }

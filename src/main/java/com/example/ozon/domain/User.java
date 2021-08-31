@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -51,8 +52,8 @@ public class User {
     @Column(name = "gender")
     private Gender gender;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private Avatar avatar;
+    @Column(name = "avatar")
+    private byte[] avatar;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Bucket bucket;
