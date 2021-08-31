@@ -9,8 +9,9 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "bought_goods")
-public class BoughtGood {
+@Table(name = "bucket_goods")
+public class BucketGood {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +29,6 @@ public class BoughtGood {
     private BigDecimal price;
 
     @OneToOne
-    private Receipt receipt;
-
+    private User user;
 
 }

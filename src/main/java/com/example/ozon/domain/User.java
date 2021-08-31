@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -55,8 +54,8 @@ public class User {
     @Column(name = "avatar")
     private byte[] avatar;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private Bucket bucket;
+    @OneToMany(mappedBy = "user")
+    private List<BucketGood> bucketGoods;
 
     @OneToMany(mappedBy = "user")
     private List<Receipt> receipt;
