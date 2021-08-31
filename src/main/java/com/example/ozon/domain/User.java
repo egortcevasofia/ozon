@@ -1,6 +1,7 @@
 package com.example.ozon.domain;
 
 import com.example.ozon.enums.Gender;
+import com.example.ozon.enums.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,6 +54,11 @@ public class User {
 
     @Column(name = "avatar")
     private byte[] avatar;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_status")
+    private UserStatus userStatus;
 
     @OneToMany(mappedBy = "user")
     private List<BucketGood> bucketGoods;

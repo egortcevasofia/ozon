@@ -1,11 +1,12 @@
 package com.example.ozon.domain;
 
+import com.example.ozon.enums.GoodStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.Set;
 
 @Getter
@@ -41,6 +42,11 @@ public class Good {
 
     @OneToMany(mappedBy = "good", cascade = CascadeType.REMOVE)
     private Set<Image> foto;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "good_status")
+    private GoodStatus goodStatus;
 
 
 }
