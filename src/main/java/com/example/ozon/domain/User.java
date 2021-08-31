@@ -55,6 +55,9 @@ public class User {
     @Column(name = "avatar")
     private byte[] avatar;
 
+    @Column(name = "delivery_address")
+    private String deliveryAddress;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status")
