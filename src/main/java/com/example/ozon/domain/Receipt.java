@@ -23,7 +23,7 @@ public class Receipt {
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
 
-    @ManyToMany
-    private List<Good> goods;
+    @OneToMany(mappedBy = "receipt")
+    private List<BoughtGood> boughtGoods;
 
 }
