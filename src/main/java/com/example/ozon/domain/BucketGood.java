@@ -28,7 +28,7 @@ public class BucketGood {
     @Column(name = "price")
     private BigDecimal price;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
 }

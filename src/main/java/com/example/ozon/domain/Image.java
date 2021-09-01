@@ -19,7 +19,7 @@ public class Image {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Good good;
 
 }

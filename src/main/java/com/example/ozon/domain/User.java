@@ -63,13 +63,13 @@ public class User {
     @Column(name = "user_status")
     private UserStatus userStatus;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BucketGood> bucketGoods;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Receipt> receipt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Shop shop;
 
     @ManyToMany

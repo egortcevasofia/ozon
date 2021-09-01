@@ -21,10 +21,10 @@ public class Shop {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
     private List<User> users;
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
     private List<Good> goods;
 
     @NotNull
