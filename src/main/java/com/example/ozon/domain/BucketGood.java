@@ -13,7 +13,8 @@ import java.math.BigDecimal;
 public class BucketGood {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bucket_goods_id_seq")
+    @SequenceGenerator(name = "bucket_goods_id_seq", sequenceName = "bucket_goods_id_seq", allocationSize = 1)
     private Long id;
 
     @OneToOne

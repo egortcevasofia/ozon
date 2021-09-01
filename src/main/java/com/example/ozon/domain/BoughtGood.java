@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 @Table(name = "bought_goods")
 public class BoughtGood {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bought_goods_id_seq")
+    @SequenceGenerator(name = "bought_goods_id_seq", sequenceName = "bought_goods_id_seq", allocationSize = 1)
     private Long id;
 
     @OneToOne

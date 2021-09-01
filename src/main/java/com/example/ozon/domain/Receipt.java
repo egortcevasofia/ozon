@@ -14,7 +14,8 @@ import java.util.List;
 public class Receipt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "receipts_id_seq")
+    @SequenceGenerator(name = "receipts_id_seq", sequenceName = "receipts_id_seq", allocationSize = 1)
     private Long id;
 
     @ManyToOne
