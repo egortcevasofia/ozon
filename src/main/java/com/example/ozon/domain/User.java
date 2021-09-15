@@ -2,8 +2,7 @@ package com.example.ozon.domain;
 
 import com.example.ozon.enums.Gender;
 import com.example.ozon.enums.UserStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,6 +15,8 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
 
     @Id
@@ -40,15 +41,14 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @NotNull
+
     @Column(name = "date_of_birthday")
     private LocalDate dateOfBirthday;
 
-    @NotNull
+
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
@@ -75,5 +75,4 @@ public class User {
 
     @ManyToMany
     private Set<Role> roles;
-
 }

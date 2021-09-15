@@ -1,0 +1,20 @@
+{
+  "userDto": {
+    "id": 1,
+    "firstName": "q",
+    "lastName": "ww",
+    "password": "q",
+    "dateOfBirthday": null,
+    "phoneNumber": null,
+    "gender": null,
+    "avatar": null,
+    "deliveryAddress": null,
+    "userStatus": null,
+    "bucketGoods": [],
+    "receipt": [],
+    "shop": null,
+    "roles": [],
+    "email": "e1@1"
+  },
+  "userStatus": "ACTIVE"
+}

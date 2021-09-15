@@ -13,6 +13,5 @@
             <nonProxyHosts>www.google.com|*.somewhere.com</nonProxyHosts>
         </proxy>
     </proxies>
-
 </settings>
 
