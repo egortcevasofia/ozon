@@ -1,5 +1,5 @@
 package com.example.ozon.enums;
 
 public enum GoodStatus {
-    ACTIVE, BLOCKED, DELETED
+    ACTIVE, BLOCKED, DELETED, SOLDOUT
 }
