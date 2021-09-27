@@ -1,6 +1,7 @@
 package com.example.ozon.domain;
 
 import com.example.ozon.enums.ShopStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,9 +24,11 @@ public class Shop {
     private String name;
 
     @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<User> users;
 
     @OneToMany(mappedBy = "shop", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Good> goods;
 
     @NotNull

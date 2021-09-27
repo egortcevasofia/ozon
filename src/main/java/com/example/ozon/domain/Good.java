@@ -1,6 +1,7 @@
 package com.example.ozon.domain;
 
 import com.example.ozon.enums.GoodStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,9 +28,11 @@ public class Good {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Shop shop;
 
     @ManyToOne

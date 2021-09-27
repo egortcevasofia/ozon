@@ -1,5 +1,6 @@
 package com.example.ozon.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,7 @@ public class BucketGood {
     private BigDecimal price;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private User user;
 
 }

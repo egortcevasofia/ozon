@@ -18,6 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserById(Long id);
     User save(User user);
     boolean existsByeMail(String email);
+    Optional<User> findUserByeMail(String email);
     @Modifying
     @Query("update User u set u.userStatus = :userStatus where u.id = :userId")
     void updateUserStatus(@Param("userId") Long userId, @Param("userStatus") UserStatus userStatus);

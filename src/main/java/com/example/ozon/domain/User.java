@@ -2,12 +2,15 @@ package com.example.ozon.domain;
 
 import com.example.ozon.enums.Gender;
 import com.example.ozon.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -65,14 +68,41 @@ public class User {
     private UserStatus userStatus;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<BucketGood> bucketGoods;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Receipt> receipt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Shop shop;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Role> roles;
+
+
+    public User(long id, @NotNull String email, @NotNull String firstName, @NotNull String lastName, @NotNull String password, @NotNull UserStatus userStatus, Set<Role> roles) {
+        this.id = id;
+        this.eMail = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.userStatus = userStatus;
+        this.roles = roles;
+    }
+
+    public User(long id, @Email @NotNull String eMail, @NotNull String password, Set<Role> roles) {
+        this.id = id;
+        this.eMail = eMail;
+        this.password = password;
+        this.roles = roles;
+    }
+
+
+
+
 }
+

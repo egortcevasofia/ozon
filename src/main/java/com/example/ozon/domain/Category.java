@@ -1,6 +1,7 @@
 package com.example.ozon.domain;
 
 import com.example.ozon.enums.CategoryStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Good> goods;
 
     @NotNull

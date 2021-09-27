@@ -1,5 +1,6 @@
 package com.example.ozon.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ public class Receipt {
     private Long id;
 
     @ManyToOne
+    @JsonManagedReference
     private User user;
 
     @Column(name = "date_of_creation")

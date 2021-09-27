@@ -31,12 +31,12 @@ public class UserController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserDto> findAll(
             @RequestParam(value = "size", required = false, defaultValue = "2") Integer size,
-            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
             Pageable pageable) {
         return userService.findAll(PageRequest.of(page, size));
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDto createUser(@Valid @RequestBody UserDto user) {
         return userService.createUser(user);
     }

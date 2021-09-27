@@ -7,6 +7,10 @@ import com.example.ozon.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +26,7 @@ public class GoodController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GoodDto>> getEmployees(GoodPageAndSort goodPageAndSort,
+    public ResponseEntity<List<GoodDto>> getGoods(GoodPageAndSort goodPageAndSort,
                                                       GoodSearchCriteria goodSearchCriteria) {
         return new ResponseEntity<>(goodService.findAll(goodPageAndSort, goodSearchCriteria),
                 HttpStatus.OK);
@@ -32,5 +36,6 @@ public class GoodController {
     public ResponseEntity<GoodDto> createGood(@RequestBody GoodDto goodDto) {
         return new ResponseEntity<>(goodService.createGood(goodDto), HttpStatus.OK);
     }
+
 
 }
