@@ -1,7 +1,9 @@
 package com.example.ozon.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "bucket_goods")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class BucketGood {
 
     @Id
@@ -34,4 +38,11 @@ public class BucketGood {
     @JsonManagedReference
     private User user;
 
+    public BucketGood(Good good, String name, int quantity, BigDecimal price, User user) {
+        this.good = good;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.user = user;
+    }
 }

@@ -44,6 +44,10 @@ public class UserService {
         return userMapper.userToUserDto(userRepository.findUserById(id).orElseThrow(UserNotFoundException::new));
     }
 
+    public UserDto findUserByEmail(String email) {
+        return userMapper.userToUserDto(userRepository.findUserByeMail(email).orElseThrow(UserNotFoundException::new));
+    }
+
     public List<UserDto> findAll(Pageable pageable) {
         return userRepository.findAll(pageable)
                 .stream()

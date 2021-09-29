@@ -2,8 +2,10 @@ package com.example.ozon.service;
 
 import com.example.ozon.criterias.GoodPageAndSort;
 import com.example.ozon.criterias.GoodSearchCriteria;
+import com.example.ozon.domain.Good;
 import com.example.ozon.dto.GoodDto;
 import com.example.ozon.dto.GoodMapper;
+import com.example.ozon.exception.GoodNotFoundException;
 import com.example.ozon.repository.GoodCritariaRepository;
 import com.example.ozon.repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -38,4 +41,12 @@ public class GoodService {
                 .map(good -> goodMapper.goodToGoodDto(good)).collect(Collectors.toList());
     }
 
+    public GoodDto findById(Long id) {
+        return goodMapper.goodToGoodDto(goodRepository.findById(id).orElseThrow(GoodNotFoundException::new));
+    }
+
+    public void buyAllGoods(Map<Good, Integer> mapOfGoods) {
+
+
+    }
 }
