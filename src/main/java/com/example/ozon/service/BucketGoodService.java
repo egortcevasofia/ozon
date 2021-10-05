@@ -73,4 +73,5 @@ public class BucketGoodService {
     public void cleanBucket(){
       deleteAll(bucketGoodRepository.findOldGoods());
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.ozon.service;
 
+import com.example.ozon.builder.GoodBuilder;
 import com.example.ozon.criterias.GoodPageAndSort;
 import com.example.ozon.criterias.GoodSearchCriteria;
 import com.example.ozon.domain.BucketGood;
@@ -57,7 +58,6 @@ public class GoodService {
             }
             goodRepository.setNewQuantity(good.getId(), realQuantity - listOfBucketGoods.get(i).getQuantity());
         }
-
 
     }
 }

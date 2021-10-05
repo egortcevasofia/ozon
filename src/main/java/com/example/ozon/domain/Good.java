@@ -53,4 +53,19 @@ public class Good {
     private GoodStatus goodStatus;
 
 
+    @Override
+    public String toString() {
+        return "Good{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", shop=" + shop +
+                ", category=" + category +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", foto=" + foto +
+                ", goodStatus=" + goodStatus +
+                '}';
+    }
 }
