@@ -1,24 +1,20 @@
 package com.example.ozon.service;
 
-import com.example.ozon.controller.GoodController;
 import com.example.ozon.domain.BucketGood;
 import com.example.ozon.domain.Good;
 import com.example.ozon.domain.User;
 import com.example.ozon.dto.GoodMapper;
-import com.example.ozon.dto.UserDto;
 import com.example.ozon.dto.UserMapper;
 import com.example.ozon.exception.GoodNotFoundException;
 import com.example.ozon.repository.BucketGoodRepository;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
-@Component
 @Service
 public class BucketGoodService {
     private GoodService goodService;
@@ -39,24 +35,21 @@ public class BucketGoodService {
     }
 
 
-
-    public BucketGood creatBucketGood(String username, Long goodId){
+    public BucketGood creatBucketGood(String username, Long goodId) {
         Good good = goodMapper.goodDtoToGood(goodService.findById(goodId));
         User user = userMapper.UserDtoToUser(userService.findUserByEmail(username));
 
-        if (good.getQuantity() < 1){
+        if (good.getQuantity() < 1) {
             throw new GoodNotFoundException();
         }
 
-        BucketGood bucketGood = new BucketGood(good, good.getName(), 1, good.getPrice(), user );
+        BucketGood bucketGood = new BucketGood(good, good.getName(), 1, good.getPrice(), user, LocalDateTime.now());
 
         return bucketGoodRepository.save(bucketGood);
     }
 
-    public List<BucketGood> findAllByUserEmail(String email) {
-        UserDto userDto = userService.findUserByEmail(email);
-        long userId = userDto.getId();
-        return bucketGoodRepository.findBucketGoodsByUserId(userId);
+    public List<BucketGood> findAllByUserId(Long id) {
+        return bucketGoodRepository.findBucketGoodsByUserId(id);
 
     }
 
@@ -64,11 +57,20 @@ public class BucketGoodService {
         BucketGood bucketGood = bucketGoodRepository.findById(bucketGoodId).orElseThrow(GoodNotFoundException::new);
         long goodId = bucketGood.getGood().getId();
         int realGoodQuantity = goodService.findById(goodId).getQuantity();
-        if (realGoodQuantity < quantity){
+        if (realGoodQuantity < quantity) {
             throw new RuntimeException();
         }
         bucketGood.setQuantity(quantity);
         bucketGoodRepository.save(bucketGood);
 
+    }
+
+    public void deleteAll(List<BucketGood> listOfBucketGoods) {
+        bucketGoodRepository.deleteAll(listOfBucketGoods);
+    }
+
+    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
+    public void cleanBucket(){
+      deleteAll(bucketGoodRepository.findOldGoods());
     }
 }

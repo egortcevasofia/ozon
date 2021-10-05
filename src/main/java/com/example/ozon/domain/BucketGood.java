@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -38,11 +39,15 @@ public class BucketGood {
     @JsonManagedReference
     private User user;
 
-    public BucketGood(Good good, String name, int quantity, BigDecimal price, User user) {
+    @Column(name = "date_of_adding")
+    private LocalDateTime dateOfAdding;
+
+    public BucketGood(Good good, String name, int quantity, BigDecimal price, User user, LocalDateTime dateOfAdding) {
         this.good = good;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.user = user;
+        this.dateOfAdding = dateOfAdding;
     }
 }

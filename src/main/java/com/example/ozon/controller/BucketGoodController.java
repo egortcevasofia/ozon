@@ -18,10 +18,11 @@ public class BucketGoodController {
         this.bucketGoodService = bucketGoodService;
     }
 
-    @GetMapping
-    public List<BucketGood> getUsersBucket(HttpServletRequest request) {
-        return bucketGoodService.findAllByUserEmail(request.getRemoteUser());
-    }
+//    @GetMapping
+//    public List<BucketGood> getUsersBucket(HttpServletRequest request) {
+//        return bucketGoodService.findAllByUserId(request.getRemoteUser());
+//    }
+
     @PostMapping
     public void updateQuantity(@RequestParam(value = "bucketGoodId") long bucketGoodId,
                                @RequestParam(value = "quantity") int quantity){

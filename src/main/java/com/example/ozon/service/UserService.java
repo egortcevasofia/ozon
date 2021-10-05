@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 import static com.example.ozon.common.Constant.RoleName.ROLE_CUSTOMER;
 
-@Component
 @Service
 public class UserService {
 

@@ -1,7 +1,9 @@
 package com.example.ozon.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "receipts")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Receipt {
 
     @Id
@@ -29,4 +33,9 @@ public class Receipt {
     @OneToMany(mappedBy = "receipt")
     private List<BoughtGood> boughtGoods;
 
+    public Receipt(User user, LocalDateTime dateOfCreation, List<BoughtGood> boughtGoods) {
+        this.user = user;
+        this.dateOfCreation = dateOfCreation;
+        this.boughtGoods = boughtGoods;
+    }
 }

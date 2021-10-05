@@ -1,5 +1,6 @@
 package com.example.ozon.controller;
 
+import com.example.ozon.exception.EmptyBucketException;
 import com.example.ozon.exception.UserAlreadyExistsException;
 import com.example.ozon.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -23,5 +24,12 @@ public class ControllerAdviser {
     @ExceptionHandler(UserAlreadyExistsException.class)
     public String userAlreadyExistsExceptionHandler(UserAlreadyExistsException ex) {
         return "User already exists";
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EmptyBucketException.class)
+    public String EmptyBucketException(EmptyBucketException ex) {
+        return "Your bucket is empty";
     }
 }

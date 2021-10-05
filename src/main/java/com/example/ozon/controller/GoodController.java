@@ -46,7 +46,6 @@ public class GoodController {
 
     @PostMapping("/{id}/bucket")
     public BucketGood putInBucket(@PathVariable(value = "id") Long goodId, HttpServletRequest request) {
-        System.out.println(goodId);
         return bucketGoodService.creatBucketGood(request.getRemoteUser(), goodId);
     }
 

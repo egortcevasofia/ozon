@@ -1,6 +1,8 @@
 package com.example.ozon.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "bought_goods")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class BoughtGood {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bought_goods_id_seq")
@@ -31,5 +35,10 @@ public class BoughtGood {
     @OneToOne
     private Receipt receipt;
 
-
+    public BoughtGood(Good good, String name, int quantity, BigDecimal price) {
+        this.good = good;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
 }
