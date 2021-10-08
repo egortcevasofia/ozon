@@ -69,7 +69,7 @@ public class BucketGoodService {
         bucketGoodRepository.deleteAll(listOfBucketGoods);
     }
 
-    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
+   // @Scheduled(initialDelay = 1000, fixedDelay = 5000)
     public void cleanBucket(){
       deleteAll(bucketGoodRepository.findOldGoods());
     }

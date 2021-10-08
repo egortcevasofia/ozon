@@ -2,7 +2,9 @@ package com.example.ozon.domain;
 
 import com.example.ozon.enums.GoodStatus;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +16,8 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "goods")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Good {
 
     @Id

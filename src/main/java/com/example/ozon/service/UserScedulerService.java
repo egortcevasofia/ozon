@@ -26,7 +26,7 @@ public class UserScedulerService {
         return userRepository.findByMatchMonthAndMatchDay(month, day);
     }
 
-    @Scheduled(cron = CRON)
+   // @Scheduled(cron = CRON)
     public void sendMailToUsers() {
         LocalDate date = LocalDate.now();
         int month = date.getMonthValue();

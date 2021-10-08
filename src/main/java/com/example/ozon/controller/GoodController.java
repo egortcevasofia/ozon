@@ -8,6 +8,7 @@ import com.example.ozon.service.BucketGoodService;
 import com.example.ozon.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class GoodController {
                 HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GoodDto findGoodById(@PathVariable(value = "id") Long id) {
         return goodService.findById(id);
     }

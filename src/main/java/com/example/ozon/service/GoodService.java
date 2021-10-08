@@ -1,6 +1,5 @@
 package com.example.ozon.service;
 
-import com.example.ozon.builder.GoodBuilder;
 import com.example.ozon.criterias.GoodPageAndSort;
 import com.example.ozon.criterias.GoodSearchCriteria;
 import com.example.ozon.domain.BucketGood;
@@ -12,11 +11,9 @@ import com.example.ozon.exception.GoodQuantityNotEnoughException;
 import com.example.ozon.repository.GoodCritariaRepository;
 import com.example.ozon.repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,8 +50,8 @@ public class GoodService {
                     .orElseThrow(GoodNotFoundException::new);
             int realQuantity = good.getQuantity();
 
-            if (realQuantity < listOfBucketGoods.get(i).getQuantity()){
-                throw  new GoodQuantityNotEnoughException();
+            if (realQuantity < listOfBucketGoods.get(i).getQuantity()) {
+                throw new GoodQuantityNotEnoughException();
             }
             goodRepository.setNewQuantity(good.getId(), realQuantity - listOfBucketGoods.get(i).getQuantity());
         }

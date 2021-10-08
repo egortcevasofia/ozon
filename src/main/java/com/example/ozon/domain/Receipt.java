@@ -1,5 +1,6 @@
 package com.example.ozon.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class Receipt {
     private LocalDateTime dateOfCreation;
 
     @OneToMany(mappedBy = "receipt")
+    @JsonBackReference
     private List<BoughtGood> boughtGoods;
 
     public Receipt(User user, LocalDateTime dateOfCreation, List<BoughtGood> boughtGoods) {

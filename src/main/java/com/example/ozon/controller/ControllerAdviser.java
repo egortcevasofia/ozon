@@ -1,6 +1,7 @@
 package com.example.ozon.controller;
 
 import com.example.ozon.exception.EmptyBucketException;
+import com.example.ozon.exception.GoodNotFoundException;
 import com.example.ozon.exception.UserAlreadyExistsException;
 import com.example.ozon.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,12 @@ public class ControllerAdviser {
     @ExceptionHandler(EmptyBucketException.class)
     public String EmptyBucketException(EmptyBucketException ex) {
         return "Your bucket is empty";
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(GoodNotFoundException.class)
+    public String GoodNotFoundException(GoodNotFoundException ex) {
+        return "Such good doesn't exist";
     }
 }

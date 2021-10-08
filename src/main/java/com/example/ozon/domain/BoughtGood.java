@@ -1,5 +1,6 @@
 package com.example.ozon.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class BoughtGood {
     private BigDecimal price;
 
     @OneToOne
+    @JsonManagedReference
     private Receipt receipt;
 
     public BoughtGood(Good good, String name, int quantity, BigDecimal price) {

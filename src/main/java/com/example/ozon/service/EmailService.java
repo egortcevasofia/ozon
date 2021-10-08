@@ -29,7 +29,7 @@ public class EmailService {
             helper.setText(text);
             this.emailSender.send(message);
         } catch (MessagingException e) {
-            //      throw new MessagingException();
+              //    throw new MessagingException();
         }
 
 
