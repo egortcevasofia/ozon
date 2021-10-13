@@ -3,7 +3,7 @@ package com.example.ozon.repository;
 import com.example.ozon.criterias.GoodPageAndSort;
 import com.example.ozon.criterias.GoodSearchCriteria;
 import com.example.ozon.domain.Good;
-import com.example.ozon.dto.GoodMapper;
+import com.example.ozon.mapper.GoodMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;

@@ -5,7 +5,7 @@ import com.example.ozon.criterias.GoodSearchCriteria;
 import com.example.ozon.domain.BucketGood;
 import com.example.ozon.domain.Good;
 import com.example.ozon.dto.GoodDto;
-import com.example.ozon.dto.GoodMapper;
+import com.example.ozon.mapper.GoodMapper;
 import com.example.ozon.exception.GoodNotFoundException;
 import com.example.ozon.exception.GoodQuantityNotEnoughException;
 import com.example.ozon.repository.GoodCritariaRepository;

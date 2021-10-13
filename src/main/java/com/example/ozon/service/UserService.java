@@ -3,7 +3,7 @@ package com.example.ozon.service;
 import com.example.ozon.domain.Role;
 import com.example.ozon.domain.User;
 import com.example.ozon.dto.UserDto;
-import com.example.ozon.dto.UserMapper;
+import com.example.ozon.mapper.UserMapper;
 import com.example.ozon.enums.UserStatus;
 import com.example.ozon.exception.UserAlreadyExistsException;
 import com.example.ozon.exception.UserNotFoundException;
@@ -11,7 +11,6 @@ import com.example.ozon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

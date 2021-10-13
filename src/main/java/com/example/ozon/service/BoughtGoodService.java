@@ -4,7 +4,7 @@ import com.example.ozon.domain.BoughtGood;
 import com.example.ozon.domain.BucketGood;
 import com.example.ozon.domain.Receipt;
 import com.example.ozon.domain.User;
-import com.example.ozon.dto.UserMapper;
+import com.example.ozon.mapper.UserMapper;
 import com.example.ozon.exception.EmptyBucketException;
 import com.example.ozon.repository.BoughtGoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;

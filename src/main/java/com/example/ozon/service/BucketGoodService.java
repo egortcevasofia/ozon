@@ -3,12 +3,11 @@ package com.example.ozon.service;
 import com.example.ozon.domain.BucketGood;
 import com.example.ozon.domain.Good;
 import com.example.ozon.domain.User;
-import com.example.ozon.dto.GoodMapper;
-import com.example.ozon.dto.UserMapper;
+import com.example.ozon.mapper.GoodMapper;
+import com.example.ozon.mapper.UserMapper;
 import com.example.ozon.exception.GoodNotFoundException;
 import com.example.ozon.repository.BucketGoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

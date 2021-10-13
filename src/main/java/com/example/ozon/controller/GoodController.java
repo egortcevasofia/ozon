@@ -6,6 +6,7 @@ import com.example.ozon.domain.BucketGood;
 import com.example.ozon.dto.GoodDto;
 import com.example.ozon.service.BucketGoodService;
 import com.example.ozon.service.GoodService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/good")
 public class GoodController {
@@ -49,6 +51,4 @@ public class GoodController {
     public BucketGood putInBucket(@PathVariable(value = "id") Long goodId, HttpServletRequest request) {
         return bucketGoodService.creatBucketGood(request.getRemoteUser(), goodId);
     }
-
-
 }

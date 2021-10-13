@@ -1,6 +1,7 @@
-package com.example.ozon.dto;
+package com.example.ozon.mapper;
 
 import com.example.ozon.domain.User;
+import com.example.ozon.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
