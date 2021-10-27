@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface XmlGoodMapper {
 
-    com.example.ozon.domain.Good xmlGoodToGood(generated.Good good);
+    com.example.ozon.domain.Good xmlGoodToGood(generated.ListOfGoods.Good good);
 
 }

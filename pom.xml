@@ -186,7 +186,8 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>src/main/good.xsd</source>
+                        <source>src/main/resources/xsd/good.xsd</source>
+                        <source>src/main/resources/xsd/shop_request.xsd</source>
                     </sources>
                 </configuration>
             </plugin>

@@ -1,54 +1,63 @@
 package com.example.ozon.queue;
 
+import com.example.ozon.domain.Good;
 import com.example.ozon.mapper.XmlGoodMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import generated.Good;
+import com.example.ozon.service.GoodService;
+import generated.ListOfGoods;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import static org.jsoup.Jsoup.parse;
-import static org.jsoup.parser.Parser.xmlParser;
+import javax.xml.bind.JAXBContext;
+import java.io.StringReader;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
 public class AmqReceiver {
 
     private XmlGoodMapper xmlGoodMapper;
+    private GoodService goodService;
 
     @Autowired
-    public void setXmlGoodMapper(XmlGoodMapper xmlGoodMapper) {
+    public AmqReceiver(XmlGoodMapper xmlGoodMapper, GoodService goodService) {
         this.xmlGoodMapper = xmlGoodMapper;
+        this.goodService = goodService;
     }
 
-    @JmsListener(destination = "${inbound.queue.name}")
-    public void aue(String message) {
+    @JmsListener(destination = "${response.from.ozon2}")
+    public void getAndSaveListOfGoods(String message) {
 
-        val xml = parse(message, " ", xmlParser());
+        log.info("get message {}", message);
 
-        val stringXml = xml.outerHtml();
-        val xmlMapper = new XmlMapper();
-        Good good = null;
+
         try {
-            good = xmlMapper.readValue(stringXml, Good.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Can't parse response from Onyx", e);
+            List<ListOfGoods.Good> listOfGeneratedGoods = unmarshall(message).getGood();
+            List<Good> listOfDomainGoods = listOfGeneratedGoods
+                    .stream()
+                    .map(good -> xmlGoodMapper.xmlGoodToGood(good))
+                    .collect(Collectors.toList());
+
+
+            log.info(listOfDomainGoods.toString());
+
+            goodService.saveAll(listOfDomainGoods);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        com.example.ozon.domain.Good domainGood = xmlGoodMapper.xmlGoodToGood(good);
-        log.info(domainGood.toString());
+
     }
+
+    private ListOfGoods unmarshall(String message) throws Exception {
+
+        JAXBContext context = JAXBContext.newInstance(ListOfGoods.class);
+        return (ListOfGoods) context.createUnmarshaller()
+                .unmarshal(new StringReader(message));
+
+    }
+
 }
-
-
-/*
-<good>
-    <description>good good</description>
-    <name>name</name>
-    <price>10</price>
-    <quantity>0</quantity>
-</good>
-* */

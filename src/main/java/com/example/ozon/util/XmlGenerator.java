@@ -1,32 +1,51 @@
 package com.example.ozon.util;
 
 import com.example.ozon.domain.Good;
+import com.example.ozon.domain.ListOfGoods;
+import com.example.ozon.queue.AmqProducer;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.*;
 import javax.xml.namespace.QName;
 import java.beans.Introspector;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Slf4j
 @RequestMapping("/xml")
 public class XmlGenerator {
 
+
+    private AmqProducer amqProducer;
+
+    @Autowired
+    public void setAmqProducer(AmqProducer amqProducer) {
+        this.amqProducer = amqProducer;
+    }
+
     @GetMapping
     public void test() {
 
+        val listOFGoods = new ListOfGoods();
         val good = new Good();
         good.setName("name");
         good.setPrice(BigDecimal.TEN);
         good.setDescription("good good");
+        List<Good> list = new ArrayList();
+        list.add(good);
+        list.add(good);
+        listOFGoods.setListOfGoods(list);
 
-        val test = toXmlString(good, Good.class);
+        val test = toXmlString(listOFGoods, ListOfGoods.class);
         log.info(test);
     }
     public static <T> String toXmlString(T o, Class<T> clazz) {
@@ -47,4 +66,6 @@ public class XmlGenerator {
             throw new DataBindingException(e);
         }
     }
+
+
 }

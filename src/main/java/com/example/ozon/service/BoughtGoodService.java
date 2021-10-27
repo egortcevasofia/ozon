@@ -63,4 +63,6 @@ public class BoughtGoodService {
 
         return listOfBoughtGoods;
     }
+
+
 }
