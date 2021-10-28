@@ -5,6 +5,7 @@ import com.example.ozon.dto.GoodDto;
 import com.example.ozon.jsonExcenge.Ozon2FeignClient;
 import com.example.ozon.jsonExcenge.RequestClientService;
 import com.example.ozon.queue.AmqProducer;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,8 @@ public class ShopController {
     }
 
 
-    @GetMapping(value = "json/{shopId}/{numberOfOrder}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "resttemplate/{shopId}/{numberOfOrder}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Qualifier(value = "RequestClientServiceRestTemplateImpl")
     public List<Good> getGoodsByOrderByJson(@PathVariable(value = "shopId") Long shopId,
                                             @PathVariable(value = "numberOfOrder") Long numberOfOrder) {
 
@@ -47,6 +49,14 @@ public class ShopController {
                                                  @PathVariable(value = "numberOfOrder") Long numberOfOrder) {
 
         return ozon2FeignClient.getListOfGoods();
+    }
+
+    @GetMapping(value = "webclient/{shopId}/{numberOfOrder}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Qualifier(value = "RequestClientServiceWebClientImpl")
+    public List<Good> getGoodsByOrderByWebClient(@PathVariable(value = "shopId") Long shopId,
+                                                @PathVariable(value = "numberOfOrder") Long numberOfOrder) {
+
+        return requestClientService.getListOfGoods(shopId, numberOfOrder);
     }
 
 
