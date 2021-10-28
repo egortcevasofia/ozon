@@ -1,5 +1,6 @@
-package com.example.ozon.domain;
+package com.example.ozon.dto;
 
+import com.example.ozon.domain.Good;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ListOfGoods {
+public class ListOfGoodsDto {
 
     private List<Good> listOfGoods;
 }

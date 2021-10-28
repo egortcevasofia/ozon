@@ -1,7 +1,7 @@
 package com.example.ozon.util;
 
 import com.example.ozon.domain.Good;
-import com.example.ozon.domain.ListOfGoods;
+import com.example.ozon.dto.ListOfGoodsDto;
 import com.example.ozon.queue.AmqProducer;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.*;
 import javax.xml.namespace.QName;
@@ -35,7 +34,7 @@ public class XmlGenerator {
     @GetMapping
     public void test() {
 
-        val listOFGoods = new ListOfGoods();
+        val listOFGoods = new ListOfGoodsDto();
         val good = new Good();
         good.setName("name");
         good.setPrice(BigDecimal.TEN);
@@ -45,7 +44,7 @@ public class XmlGenerator {
         list.add(good);
         listOFGoods.setListOfGoods(list);
 
-        val test = toXmlString(listOFGoods, ListOfGoods.class);
+        val test = toXmlString(listOFGoods, ListOfGoodsDto.class);
         log.info(test);
     }
     public static <T> String toXmlString(T o, Class<T> clazz) {
